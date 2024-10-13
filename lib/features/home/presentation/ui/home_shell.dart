@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:realestate/core/core.dart';
+import 'package:realestate/core/themes/color_constants.dart';
 import 'package:realestate/features/home/presentation/widgets/custom_bottom_bar.dart';
 
 class ScaffoldWithNestedNavigation extends StatefulWidget {
@@ -41,6 +42,7 @@ class _ScaffoldWithNestedNavigationState
         return true; // Allow the app to exit
       },
       child: Scaffold(
+
         body: Stack(
           children: [
             widget.navigationShell,
@@ -57,7 +59,7 @@ class _ScaffoldWithNestedNavigationState
             )
           ],
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: ColorConstants().secondaryColor,
         bottomNavigationBar: const SizedBox.shrink(),
       ),
     );

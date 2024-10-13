@@ -16,7 +16,7 @@ class RandomLocationsUseCase implements UseCase<Set<Marker>, int> {
 
   Future<Set<Marker>> _generateNearbyMarkers(int numMarkers) async {
     print("i was called");
-   // BitmapDescriptor customMarkerIcon = await createCustomMarkerIcon(_markerKey);
+//    BitmapDescriptor customMarkerIcon = await createCustomMarkerIcon(_markerKey);
     Set<Marker> markers = {};
     const double earthRadius = 6371.0; // Radius of Earth in kilometers
 
