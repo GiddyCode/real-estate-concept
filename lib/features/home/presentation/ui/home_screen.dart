@@ -199,17 +199,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         topLeft: Radius.circular(30))),
                 child: Column(
                   children: [
-                    const HomeCardWidget(height: 179, width: double.infinity),
+                     HomeCardWidget(height: 179, width: double.infinity, image: AllImages().kitchenImage,),
                     Gap(10.h),
                     Row(
                       children: [
-                        const HomeCardWidget(height: 368, width: 175),
+                         HomeCardWidget(height: 368, width: 175, image: AllImages().bathRoomImage,),
                         Gap(10.w),
                         Column(
                           children: [
-                            const HomeCardWidget(),
+                             HomeCardWidget(image: AllImages().kitchenImage,),
                             Gap(10.h),
-                            const HomeCardWidget(),
+                             HomeCardWidget(image: AllImages().bathRoomImage,),
                           ],
                         )
                       ],
