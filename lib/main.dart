@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/services.dart';
 import 'package:realestate/app.dart';
+import 'core/core.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(
-    const ProviderScope(
-      child: App(),
-    ),
+    Providers.init(const App()),
   );
 }
