@@ -44,7 +44,6 @@ void main() {
   test('should generate markers within a 20km radius', () async {
     final markers = await useCase.generateTestMarkers(10);
     final centralPoint =  const LatLng(52.5200, 13.4050);
-    final earthRadius = 6371.0; // Radius of Earth in kilometers
 
 
 
