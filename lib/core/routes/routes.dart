@@ -2,9 +2,10 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:realestate/features/home/presentation/ui/home_screen.dart';
-import 'package:realestate/features/home/presentation/ui/home_screen.dart';
 import 'package:realestate/features/home/presentation/ui/home_shell.dart';
 import 'package:realestate/features/search/presentation/ui/search_screen.dart';
+import 'package:realestate/features/search/presentation/widgets/animated_container.dart';
+
 
 class AppRoutes {
   static const home = '/home';
@@ -90,7 +91,7 @@ final GoRouter router = GoRouter(
               name: AppRoutes.chat,
               path: AppRoutes.chat,
               pageBuilder: (BuildContext context, GoRouterState state) {
-                return NoTransitionPage(child: Container());
+                return const NoTransitionPage(child: AnimatedMapIcons());
               },
             ),
           ]),
