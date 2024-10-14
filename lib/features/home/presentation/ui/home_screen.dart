@@ -30,7 +30,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with TickerProviderStat
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        height: 1100,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
