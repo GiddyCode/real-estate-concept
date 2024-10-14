@@ -49,3 +49,4 @@ Secrets
 Secrets.tar
 pubspec.lock
 /lib/features/search/presentation/notifier/random_location_list.g.dart
+/.fvm/

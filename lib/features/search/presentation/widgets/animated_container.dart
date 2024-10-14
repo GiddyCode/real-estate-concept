@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:realestate/core/themes/color_constants.dart';
 import 'package:realestate/core/utils/image_constants.dart';
 import 'package:realestate/features/search/presentation/widgets/animation/fade_in_expanded.dart';
 import 'package:realestate/features/search/presentation/widgets/maps_circle_widget.dart';
@@ -345,6 +346,7 @@ class _AnimatedMarkerState extends State<AnimatedMarker> with TickerProviderStat
       child: AnimatedBuilder(
         animation: _widthAnimation,
         builder: (context, child) {
+          print("this is the width ${_widthAnimation.value}");
           return Align(
             alignment: Alignment.centerLeft,
             child: Container(
@@ -359,6 +361,9 @@ class _AnimatedMarkerState extends State<AnimatedMarker> with TickerProviderStat
                   bottomRight: Radius.circular(5),
                 ),
               ),
+              child: _widthAnimation.value < 60 ? Transform.scale(
+                scale: 0.5,
+                  child: SvgPicture.asset(AllImages().officeIcon)) :Text("600 P",style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: ColorConstants().stoneWhite), ),
             ),
           );
         },

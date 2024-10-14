@@ -22,7 +22,7 @@ dependencies:
   flutter_svg: ^2.0.9
   animations: ^2.0.8
   gap:
-  google_maps_flutter: ^2.9.0
+  google_maps_flutter: ^2.8.0
   riverpod_annotation: ^2.3.4
   flutter_map: 4.0.0
   latlong2:
@@ -37,7 +37,6 @@ dev_dependencies:
   json_serializable: ^6.3.1
   built_value_generator: ^8.4.1
   riverpod_generator:
-  slider_button: ^2.1.0
   flutter_lints: ^2.0.0
 
 
@@ -51,9 +50,6 @@ flutter:
   assets:
     - assets/images/
     - assets/svg/
-#    - assets/images/3.0x/logo.png
-#    - assets/images/login.png
-#    - assets/images/signup.png
 
   fonts:
     - family: Euclid Circular A

@@ -13,6 +13,7 @@ class AllImages {
   String settingsIcon = 'assets/svg/settings.svg';
   String menuIcon = 'assets/svg/menu.svg';
   String stackIcon = 'assets/svg/stack.svg';
+  String officeIcon = 'assets/svg/office.svg';
   String navigationIcon = 'assets/svg/navigation.svg';
   String kitchenImage = 'assets/images/kitchen-6778196_640.jpg';
   String bathRoomImage = 'assets/images/bathroom-2094733_640.jpg';
