@@ -6,6 +6,9 @@ import 'package:gap/gap.dart';
 import 'package:realestate/core/themes/color_constants.dart';
 import 'package:realestate/core/utils/image_constants.dart';
 import 'package:realestate/features/home/presentation/widgets/home_card_widget.dart';
+import 'package:realestate/features/search/presentation/widgets/animation/animated_counter.dart';
+import 'package:realestate/features/search/presentation/widgets/animation/fade_in_expanded.dart';
+import 'package:realestate/features/search/presentation/widgets/animation/fly_in_fade_in.dart';
 import 'package:realestate/features/search/presentation/widgets/maps_circle_widget.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -15,7 +18,14 @@ class HomeScreen extends ConsumerStatefulWidget {
   ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends ConsumerState<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> with TickerProviderStateMixin, WidgetsBindingObserver {
+  @override
+  void dispose() {
+    // Remove the observer when the widget is disposed
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -26,7 +36,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             colors: [
               ColorConstants().primaryColor,
               ColorConstants().secondaryColor.withOpacity(0.3),
-              //  Colors.grey.withOpacity(0.3),
             ],
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
@@ -50,173 +59,181 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        height: 41.h,
-                        width: 160.w,
-                        padding: EdgeInsets.symmetric(horizontal: 10.w),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Row(
-                          children: [
-                            Transform.scale(
-                              scale: 0.7,
-                              child: SvgPicture.asset(
-                                AllImages().locationIcon,
-                                color: ColorConstants().secondaryColor,
+                      FadeInExpandWidget(
+                        child: Container(
+                          height: 41.h,
+                          width: 160.w,
+                          padding: EdgeInsets.symmetric(horizontal: 10.w),
+                          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                          child: Row(
+                            children: [
+                              Transform.scale(
+                                scale: 0.7,
+                                child: SvgPicture.asset(
+                                  AllImages().locationIcon,
+                                  color: ColorConstants().secondaryColor,
+                                ),
                               ),
-                            ),
-                            Gap(5.w),
-                            Text(
-                              "Saint Petersburg",
-                              style: TextStyle(
-                                  fontSize: 14.sp,
-                                  color: ColorConstants().secondaryColor),
-                            ),
-                          ],
+                              Gap(5.w),
+                              Text(
+                                "Saint Petersburg",
+                                style: TextStyle(fontSize: 14.sp, color: ColorConstants().secondaryColor),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       Gap(5.w),
-                      MapCircleWidget(
-                        itemHeight: 40,
-                        itemWidth: 40,
-                        itemColor: Colors.white,
-                        assetColor: Colors.black,
-                        asset: AllImages().settingsIcon,
-                      ),
+                      FadeInExpandWidget(
+                        child: MapCircleWidget(
+                          itemHeight: 40,
+                          itemWidth: 40,
+                          itemColor: Colors.white,
+                          assetColor: Colors.black,
+                          asset: AllImages().settingsIcon,
+                        ),
+                      )
                     ],
                   ),
                   const Gap(40),
-                  Text(
-                    "Hi, Marina",
-                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        color: ColorConstants().secondaryColor,
-                        fontWeight: FontWeight.w500),
+                  FlyInFadeIn(
+                    child: Text(
+                      "Hi, Marina",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineMedium
+                          ?.copyWith(color: ColorConstants().secondaryColor, fontWeight: FontWeight.w500),
+                    ),
                   ),
                   Gap(10.h),
-                  Text(
-                    "let's select your \nperfect place",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineMedium
-                        ?.copyWith(fontWeight: FontWeight.w500, fontSize: 29),
+                  FlyInFadeIn(
+                    child: Text(
+                      "let's select your \nperfect place",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineMedium
+                          ?.copyWith(fontWeight: FontWeight.w500, fontSize: 29),
+                    ),
                   ),
                   Gap(30.h),
                   Row(
                     children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 20, horizontal: 20),
-                        height: 139.h,
-                        width: 139.w,
-                        decoration: BoxDecoration(
-                            color: ColorConstants().primaryColor,
-                            shape: BoxShape.circle),
-                        child: Column(
-                          children: [
-                            Text(
-                              "BUY",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(color: Colors.white),
-                            ),
-                            Gap(10.h),
-                            Text(
-                              "1034",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineLarge
-                                  ?.copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600),
-                            ),
-                            Text(
-                              "offers",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(color: Colors.white),
-                            ),
-                          ],
+                      FadeInExpandWidget(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                          height: 139.h,
+                          width: 139.w,
+                          decoration: BoxDecoration(color: ColorConstants().primaryColor, shape: BoxShape.circle),
+                          child: Column(
+                            children: [
+                              Text(
+                                "BUY",
+                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.white),
+                              ),
+                              Gap(10.h),
+                              const AnimatedCounter(
+                                start: 0,
+                                end: 1034,
+                                duration: Duration(milliseconds: 1400),
+                                color: Colors.white,
+                                curve: Curves.easeInOut,
+                              ),
+                              Text(
+                                "offers",
+                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       Gap(10.h),
-                      Container(
-                        height: 139.h,
-                        width: 187.w,
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 20, horizontal: 20),
-                        decoration: BoxDecoration(
-                            color: ColorConstants().stoneWhite,
-                            borderRadius: BorderRadius.circular(25)),
-                        child: Column(
-                          children: [
-                            Text(
-                              "RENT",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(
-                                      color: ColorConstants().secondaryColor),
-                            ),
-                            Gap(10.h),
-                            Text(
-                              "2 212",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineLarge
-                                  ?.copyWith(
-                                      color: ColorConstants().secondaryColor,
-                                      fontWeight: FontWeight.w600),
-                            ),
-                            Text(
-                              "offers",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(
-                                      color: ColorConstants().secondaryColor),
-                            ),
-                          ],
+                      FadeInExpandWidget(
+                        child: Container(
+                          height: 139.h,
+                          width: 187.w,
+                          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                          decoration: BoxDecoration(
+                              color: ColorConstants().stoneWhite, borderRadius: BorderRadius.circular(25)),
+                          child: Column(
+                            children: [
+                              Text(
+                                "RENT",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.copyWith(color: ColorConstants().secondaryColor),
+                              ),
+                              Gap(10.h),
+                              AnimatedCounter(
+                                start: 0,
+                                end: 2212,
+                                duration: const Duration(milliseconds: 1400),
+                                color: ColorConstants().secondaryColor,
+                                curve: Curves.easeInOut,
+                              ),
+                              Text(
+                                "offers",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.copyWith(color: ColorConstants().secondaryColor),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ],
               ),
             ),
             Gap(40.h),
-            Flexible(
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 7),
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(30),
-                        topLeft: Radius.circular(30))),
-                child: Column(
-                  children: [
-                     HomeCardWidget(height: 179, width: double.infinity, image: AllImages().kitchenImage,),
-                    Gap(10.h),
-                    Row(
-                      children: [
-                         HomeCardWidget(height: 368, width: 175, image: AllImages().bathRoomImage,),
-                        Gap(10.w),
-                        Column(
-                          children: [
-                             HomeCardWidget(image: AllImages().kitchenImage,),
-                            Gap(10.h),
-                             HomeCardWidget(image: AllImages().bathRoomImage,),
-                          ],
-                        )
-                      ],
-                    )
-                  ],
+            FlyInFadeIn(
+              duration: const Duration(seconds: 1),
+              child: Flexible(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 7),
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(topRight: Radius.circular(30), topLeft: Radius.circular(30))),
+                  child: Column(
+                    children: [
+                      HomeCardWidget(
+                        height: 179,
+                        width: double.infinity,
+                        image: AllImages().kitchenImage,
+                        title: "Gladkova St., 25",
+                      ),
+                      Gap(10.h),
+                      Row(
+                        children: [
+                          HomeCardWidget(
+                            height: 368,
+                            width: 175,
+                            image: AllImages().bathRoomImage,
+                             title: "Trefoleva St., 43",
+                          ),
+                          Gap(10.w),
+                          Column(
+                            children: [
+                              HomeCardWidget(
+                                image: AllImages().kitchenImage,
+                                 title: "Sedolva., 11",
+                              ),
+                              Gap(10.h),
+                              HomeCardWidget(
+                                image: AllImages().bathRoomImage,
+                                 title: "Gabinna St., 22",
+                              ),
+                            ],
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  // height: 500.h,
                 ),
-                // height: 500.h,
               ),
             )
           ],

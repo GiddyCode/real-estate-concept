@@ -48,6 +48,8 @@ class _AnimatedMapIconsState extends State<AnimatedMapIcons> with TickerProvider
     markerHeight = (30 / 60) * maxWidth;
   }
 
+
+
   @override
   void dispose() {
     // Remove the observer when the widget is disposed

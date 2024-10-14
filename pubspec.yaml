@@ -27,6 +27,7 @@ dependencies:
   flutter_map: 4.0.0
   latlong2:
   slider_button: ^2.1.0
+  visibility_detector:
 
 
 dev_dependencies:

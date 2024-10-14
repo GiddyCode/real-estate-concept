@@ -26,7 +26,7 @@ class _FadeInExpandWidgetState extends State<FadeInExpandWidget>
 
     // Initialize the animation controller
     _controller = AnimationController(
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 3),
       vsync: this,
     );
 
