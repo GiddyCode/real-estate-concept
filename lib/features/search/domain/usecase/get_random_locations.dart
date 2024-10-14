@@ -12,10 +12,10 @@ class RandomLocationsUseCase implements UseCase<Set<Marker>, int> {
   final LatLng _centralPoint = const LatLng(52.5200, 13.4050);
   final GlobalKey _markerKey = GlobalKey();
   @override
-  Future<Set<Marker>> call({int? params}) async => await _generateNearbyMarkers(params!);
+  Future<Set<Marker>> call({int? params}) async =>
+      await _generateNearbyMarkers(params!);
 
   Future<Set<Marker>> _generateNearbyMarkers(int numMarkers) async {
-    print("i was called");
 //    BitmapDescriptor customMarkerIcon = await createCustomMarkerIcon(_markerKey);
     Set<Marker> markers = {};
     const double earthRadius = 6371.0; // Radius of Earth in kilometers
@@ -27,30 +27,35 @@ class RandomLocationsUseCase implements UseCase<Set<Marker>, int> {
 
       // Calculate new latitude and longitude
       double deltaLat = distanceKm / earthRadius;
-      double deltaLng = distanceKm / (earthRadius * cos(pi * _centralPoint.latitude / 180.0));
+      double deltaLng =
+          distanceKm / (earthRadius * cos(pi * _centralPoint.latitude / 180.0));
 
       double newLat = _centralPoint.latitude + deltaLat * cos(angle);
       double newLng = _centralPoint.longitude + deltaLng * sin(angle);
 
       markers.add(
         Marker(
-            markerId: MarkerId('marker_$i'),
-            position: LatLng(newLat, newLng),
-            infoWindow: InfoWindow(title: 'Marker $i'),
-            // icon: customMarkerIcon
+          markerId: MarkerId('marker_$i'),
+          position: LatLng(newLat, newLng),
+          infoWindow: InfoWindow(title: 'Marker $i'),
+          // icon: customMarkerIcon
         ),
       );
     }
-    print("Markers loaded completely");
+
     return markers;
   }
 
+  Future<Set<Marker>> generateTestMarkers(int numMarkers) =>
+      _generateNearbyMarkers(numMarkers);
   Future<BitmapDescriptor> createCustomMarkerIcon(GlobalKey key) async {
     try {
       // Capture the widget from the GlobalKey
-      RenderRepaintBoundary boundary = key.currentContext!.findRenderObject() as RenderRepaintBoundary;
+      RenderRepaintBoundary boundary =
+          key.currentContext!.findRenderObject() as RenderRepaintBoundary;
       ui.Image image = await boundary.toImage();
-      ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+      ByteData? byteData =
+          await image.toByteData(format: ui.ImageByteFormat.png);
       Uint8List pngBytes = byteData!.buffer.asUint8List();
 
       // Convert Uint8List to BitmapDescriptor
