@@ -96,7 +96,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                           ),
                           Gap(5.w),
                           Text(
-                            "List of variants",
+                            "Saint Petersburg",
                             style: TextStyle(
                               fontSize: 14.sp,
                             ),
