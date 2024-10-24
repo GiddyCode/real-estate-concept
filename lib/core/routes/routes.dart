@@ -128,5 +128,3 @@ final GoRouter router = GoRouter(
         ]),
   ],
 );
-
-//  return NoBarScaffold(child: child);
